@@ -1,0 +1,8 @@
+1. SELECT a.title, b.type, SUM(b.weight) as total_weight from activities as a JOIN activity_details as b ON b.id_activity=a.id group by a.title, b.type
+
+2. SELECT a.title, count(b.id_activity) as total_detail_activity, SUM(b.weight) AS total_weight from activities as a JOIN activity_details as b ON b.id_activity=a.id group by a.title
+
+3. SELECT a.title, COUNT(DISTINCT b.type) as total_activity_type, SUM(b.weight) FROM activities as a LEFT JOIN activity_details as b ON b.id_activity=a.id group by a.title
+
+4. SELECT a.title,b.type, b.weight FROM activities AS a INNER JOIN (SELECT * FROM activity_details WHERE id IN ( SELECT MAX(id) FROM activity_details GROUP BY id_activity )) AS b ON b.id_activity = a.id
+
